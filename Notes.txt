@@ -1,0 +1,21 @@
+----------MongoDB Set up-------
+Install MongoDB msi from mongodb.org and install-> custom-> choose d:\mongodb directory for installation.
+Create "d:\mongodb\data\db" and "d:\mongodb\log" folders
+After installtion:
+open "command prompt" in "Administrative mode".
+cd mongodb
+cd bin
+run following command:
+
+mongod --directoryperdb --dbpath d:\mongodb\data\db --logpath d:\mongodb\log\mongo.log --logappend --rest --install
+
+To start the MongoDB service:
+net start MongoDB
+
+To start mongodb command shell:
+mongo
+
+To see list of databases:
+show dbs
+
+
