@@ -1,0 +1,90 @@
+----------MongoDB Set up-------
+Install MongoDB msi from mongodb.org and install-> custom-> choose d:\mongodb directory for installation.
+Create "d:\mongodb\data\db" and "d:\mongodb\log" folders
+After installtion:
+open "command prompt" in "Administrative mode".
+cd mongodb
+cd bin
+run following command:
+
+mongod --directoryperdb --dbpath d:\mongodb\data\db --logpath d:\mongodb\log\mongo.log --logappend --rest --install
+
+To start the MongoDB service:
+net start MongoDB
+
+To start mongodb command shell:
+mongo
+
+See list of databases:
+>show dbs
+
+Create a new database:
+>use mydatabase
+
+Check which database you are in:
+>db
+
+Before inserting data into a database, create database user first:
+>use mydatabase
+>db.createUser(
+   {
+     user: "john",
+     pwd: "1234",
+     roles: [ "readWrite", "dbAdmin" ]
+   }
+);
+
+Create a collection(table):
+>db.createCollection('customers');
+
+See list of collections(tables):
+>show collections
+
+Insert data into collection (table):
+>db.customers.insert({first_name:"John", last_name:"Smith"}); 
+
+---More commands: refer : https://docs.mongodb.com/manual/reference
+
+Query all documents (records) from a collection(table)
+>db.customers.find()
+
+To view the data in well formatted json:
+>db.customers.find().pretty()
+
+Insert multiple documents(records) into collection(table):
+>db.customers.insert([{first_name:"John", last_name:"Smith"},{first_name:"Noor", last_name:"Chervu", gender:"male"}]);
+
+>db.customers.update({first_name:"John"},{first_name:"John", last_name:"Kelly", gender:"male"}, {multi:true});
+
+Update specific attributes:
+>db.customers.update({first_name:"John"},{$set:{gender:"female"}},{multi:true});
+
+Add a new attribute(column) to all the documnets(records) in a collection(table):
+>db.customers.update({},{$set:{age:35}},{multi:true});
+
+Increment a specifc attribute
+>db.customers.update({last_name:"Kelly"}, {$inc:{age:3}});
+
+Remove a field(column)
+>db.customers.update({first_name:"Noor"}, {$unset:{age:1}},{multi:true});
+
+Insert a document(record) if it does not exist
+>db.customers.update({first_name:"Mike"},{first_name:"Mike",last_name:"Lapitan"},{upsert:true});
+
+
+Rename a column
+>db.customers.update({first_name:"John"},{$rename:{"age":"vayasu"}},{multi:true});
+
+for more, check:  https://docs.mongodb.com/manual/reference
+
+
+
+
+
+
+
+
+
+ 
+
+
