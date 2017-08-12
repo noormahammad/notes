@@ -1,0 +1,51 @@
+MongoDB C# Driver
+
+You can get the latest stable release from the official Nuget.org feed or from our github releases page.
+
+If you'd like to work with the bleeding edge, you can use our custom feed. Some packages on this feed are pre-release and, while they've passed all our tests, are not yet ready for production.
+
+Getting Started
+
+Untyped Documents
+
+using MongoDB.Bson;
+using MongoDB.Driver;
+var client = new MongoClient("mongodb://localhost:27017");
+var database = client.GetDatabase("foo");
+var collection = database.GetCollection<BsonDocument>("bar");
+
+await collection.InsertOneAsync(new BsonDocument("Name", "Jack"));
+
+var list = await collection.Find(new BsonDocument("Name", "Jack"))
+    .ToListAsync();
+
+foreach(var document in list)
+{
+    Console.WriteLine(document["Name"]);
+}
+Typed Documents
+
+using MongoDB.Bson;
+using MongoDB.Driver;
+public class Person
+{
+    public ObjectId Id { get; set; }
+    public string Name { get; set; }
+}
+var client = new MongoClient("mongodb://localhost:27017");
+var database = client.GetDatabase("foo");
+var collection = database.GetCollection<Person>("bar");
+
+await collection.InsertOneAsync(new Person { Name = "Jack" });
+
+var list = await collection.Find(x => x.Name == "Jack")
+    .ToListAsync();
+
+foreach(var person in list)
+{
+    Console.WriteLine(person.Name);
+}
+Documentation
+
+MongoDB
+Documentation
