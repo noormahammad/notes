@@ -75,6 +75,16 @@ Insert a document(record) if it does not exist
 Rename a column
 >db.customers.update({first_name:"John"},{$rename:{"age":"vayasu"}},{multi:true});
 
+Using Like % similar operator. use regular expressions. "%" is similar to ".*" in regex
+db.videos.find({"snippet.title":/.*Kinder.*/});
+
+Create an index on a text property
+db.videos.createIndex({"snippet.title":"text"});
+
+Use MongoDB text search
+db.videos.find({$text:{$search:"/.*preschool.*/",$caseSensitive:false}});
+
+
 for more, check:  https://docs.mongodb.com/manual/reference
 
 
