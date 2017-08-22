@@ -9,7 +9,9 @@ app.get('/', (req,res) => {
 
 //basic usage using multer. uploade a single file.
 app.post('/profile', (req,res) =>{
+    //make sure to give the name of the input control in html as "avatar". e.g: input type="file" name="avatar">
     var upload = multer({dest:'uploads/'}).single('avatar');
+    //this uploads the files
     upload(req,res, (err) => {
     //req.file is the 'avatar' file 
     //req.body will hold the text fields, if there were any
@@ -33,26 +35,31 @@ app.post('/photos/upload',(req,res) => {
     });    
 });
 
+//Using Multer "DiskStorage" feature to get full control on storing files to disk
+app.post('/photos/:user/upload',(req,res) => {    
+    //specify storage option
+    var storage = multer.diskStorage({
+        //upload to user specific directory. if folder does not exist, multer will automaticaly creats it
+        destination: './uploads/'+req.params.user+'/',
+        filename: function(req,file,callback) {
+            callback(null, Date.now() + '-' + file.originalname);
+        }
+    });
+    //make sure to give the name of the input control in html as "photos". e.g: input type="file" name="photos" multiple>
+    var upload = multer({storage: storage}).array('photos',50);   
+    //this uploads the files
+    upload(req,res,(err) => {
+        if(err) throw err;        
+        req.files.forEach(function(x) {
+            console.log(x.originalname);
+        });        
+        console.log("other text field(s) on the submitted form  : "+ req.body.username);
+    });   
+    res.send("files uploaded successfully!"); 
+});
+
 //start the server
 app.set('port',process.env.Port || 3000);
 app.listen(app.get('port'));
 console.log('listening on port ' + app.get('port'));
-
-/*  HTML Markup
-
-<h2>Single File Upload</h2>
-<form method="post" enctype="multipart/form-data" action="http://localhost:3000/profile">
-    <input type="text" name="username">
-    <input type="password" name="password">
-    <input type="file" name="avatar">
-    <input type="submit">
-</form>
-
-<h2>Multiple files Upload</h2>
-<form method="post" enctype="multipart/form-data" action="http://localhost:3000/photos/upload">
-    <input type="text" name="username">    
-    <input type="file" name="photos" multiple>
-    <input type="submit">
-</form>
-*/
 
