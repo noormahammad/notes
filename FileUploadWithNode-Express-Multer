@@ -1,0 +1,58 @@
+const express = require('express');
+const multer = require('multer');
+
+var app = express(); 
+
+app.get('/', (req,res) => {
+   res.send("Node REST API for fiel uploads. use api/upload");
+});
+
+//basic usage using multer. uploade a single file.
+app.post('/profile', (req,res) =>{
+    var upload = multer({dest:'uploads/'}).single('avatar');
+    upload(req,res, (err) => {
+    //req.file is the 'avatar' file 
+    //req.body will hold the text fields, if there were any
+    if(err) throw err;                        
+    console.log(req.body.username);
+    console.log(req.body.password);    
+    });    
+    
+    res.send("file uploaded");
+});
+
+//upload multiple files
+app.post('/photos/upload',(req,res) => {
+    var upload = multer({dest:'uploads/'}).array('photos',20);    
+    upload(req,res,(err) => {
+        if(err) throw err;        
+        req.files.forEach(function(x) {
+            console.log(x.originalname);
+        });        
+        console.log("other text field(s) on the submitted form  : "+ req.body.username);
+    });    
+});
+
+//start the server
+app.set('port',process.env.Port || 3000);
+app.listen(app.get('port'));
+console.log('listening on port ' + app.get('port'));
+
+/*  HTML Markup
+
+<h2>Single File Upload</h2>
+<form method="post" enctype="multipart/form-data" action="http://localhost:3000/profile">
+    <input type="text" name="username">
+    <input type="password" name="password">
+    <input type="file" name="avatar">
+    <input type="submit">
+</form>
+
+<h2>Multiple files Upload</h2>
+<form method="post" enctype="multipart/form-data" action="http://localhost:3000/photos/upload">
+    <input type="text" name="username">    
+    <input type="file" name="photos" multiple>
+    <input type="submit">
+</form>
+*/
+
