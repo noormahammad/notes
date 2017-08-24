@@ -14,12 +14,21 @@
       <add name="iisnode" path="fileupload.js" verb="*" modules="iisnode" />
     </handlers>
 
+    <!-- use URL rewriting to redirect the entire branch of the URL namespace
+    to hello.js node.js application; for example, the following URLs will 
+    all be handled by hello.js:
+    
+        http://localhost/node/urlrewrite/myapp
+        http://localhost/node/urlrewrite/myapp/foo
+        http://localhost/node/urlrewrite/myapp/foo/bar/baz?param=bat
+        
+    -->
     <rewrite>
       <rules>
         <rule name="default">
           <match url="/*" />
           <action type="Rewrite" url="fileupload.js" />
-        </rule>        
+        </rule>           
       </rules>
     </rewrite>    
 
