@@ -1,3 +1,11 @@
+To connect to Linux VM remotely: 
+use command "ssh username@public-ip-address" (it will then ask for password):
+
+dir, mkdir, cd, cd .. all works in linux too. 
+
+create a file command: 
+touch hello.txt 
+
 Write multiple lines to a file from the command line in Linux:
 
 cat >> sometextfile.txt << EOF
@@ -5,3 +13,8 @@ text
 more text
 and another line
 EOF
+
+
+
+to create a file along with the path
+mkdir -p ~/Desktop/a/b/c/d/e/f/g/h/ && touch ~/Desktop/a/b/c/d/e/f/g/h/1.txt
