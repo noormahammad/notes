@@ -98,3 +98,7 @@ If you got that, it means that everything is working fine. We just need to add o
 
 sudo systemctl enable mongod.service 
 ------------------------------------------------------------------------------------------------------
+
+https://blog.johncrisostomo.com/installing-mongodb-with-ssl-on-ubuntu-16-04-ms-azure/
+
+---------------------------
