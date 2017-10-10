@@ -17,10 +17,14 @@ EOF
 to create a file along with the path
 mkdir -p ~/Desktop/a/b/c/d/e/f/g/h/ && touch ~/Desktop/a/b/c/d/e/f/g/h/1.txt
 
+--------------------------------------------------------------------------
 
 To stop a node app in Linux through command line after the terminal is closed:
 you have to check Linux process.
-% ps -A
-then, let say the node process id is 12345
-then just type following type of command:
-% kill 12345 or kill -9 12345
+
+An easier way to find this:
+ps -ef | grep node
+should show you all processes matching node. To kill without knowing the PID (will also kill any other processes matching node):
+
+pkill -f node
+--------------------------------------------------------------------------
