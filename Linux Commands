@@ -28,3 +28,73 @@ should show you all processes matching node. To kill without knowing the PID (wi
 
 pkill -f node
 --------------------------------------------------------------------------
+
+make sure that our MongoDB service will restart across VM reboots. systemctl will take care of that for us:
+
+sudo systemctl enable mongod.service  
+
+--------------------------------------------------------------------------------------------------------------
+Create a root user
+I will not get into the details of how to create and manage MongoDB databases and collections here, but let us go into the processes of creating a root user so we manage our database installation remotely through this user.
+
+CONNECT TO MONGODB CLI
+
+mongo  
+USE THE ADMIN DATABASE
+
+use admin  
+CREATE ADMIN USER
+
+db.createUser(  
+    {
+      user: "superadmin",
+      pwd: "password123",
+      roles: [ "root" ]
+    }
+)
+SSL and some network-related configuration
+Now that we have MongoDB installed and running, we need to make some changes with the mongod.conf file to enable SSL and to make our MongoDB installation accessible on our VM's public IP and chosen port.
+
+SSL CERTIFICATES
+
+Creating a self-signed certificate
+
+If you already have a certificate or you just bought one for your database for production use, feel free to skip this step. I am just adding this for people who are still experimenting and want SSL enabled from the start. More information regarding this can be found here.
+
+This self-signed certificate will be valid for one year.
+
+sudo openssl req -newkey rsa:2048 -new -x509 -days 365 -nodes -out mongodb-cert.crt -keyout mongodb-cert.key  
+Create .pem certificate
+
+This .pem certificate is the one that we will use on our mongod.conf configuration file. This command will save it on your home directory (/home/<username>/mongodb.pem or ~/mongodb.pem).
+
+cat mongodb-cert.key mongodb-cert.crt > ~/mongodb.pem  
+MongoDB Configuration
+
+Now that we have our self-signed certificate and admin user ready, we can go ahead and tweak our MongoDB configuration file to bind our IP, change the port our database will use (if you want to), enable SSL and to enable authorization.
+
+I use vim whenever I am dealing with config files via SSH; you can use your favorite text editor for this one.
+
+sudo vim /etc/mongod.conf  
+Make sure to change the following lines to look like this:
+
+net:  
+  port: 27017
+  bindIp: 0.0.0.0
+  ssl:
+    mode: requireSSL
+    PEMKeyFile: /home/<username>/mongodb.pem
+
+
+security:  
+  authorization: enabled
+Restart the MongoDB service:
+
+sudo service mongod restart  
+If we go ahead and print the MongoDB logs like we did earlier, we should be able to see something that looks like this (notice that there's an SSL now):
+
+2017-10-04T01:18:51.854+0000 I NETWORK [thread1] waiting for connections on port 27017 ssl  
+If you got that, it means that everything is working fine. We just need to add one more command to make sure that our MongoDB service will restart across VM reboots. systemctl will take care of that for us:
+
+sudo systemctl enable mongod.service 
+------------------------------------------------------------------------------------------------------
