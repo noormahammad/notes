@@ -1,0 +1,7 @@
+Write multiple lines to a file from the command line in Linux:
+
+cat >> sometextfile.txt << EOF
+text
+more text
+and another line
+EOF
