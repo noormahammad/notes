@@ -19,6 +19,10 @@ mkdir -p ~/Desktop/a/b/c/d/e/f/g/h/ && touch ~/Desktop/a/b/c/d/e/f/g/h/1.txt
 
 --------------------------------------------------------------------------
 
+Remove all files in a directory, navigate to the directory and type:
+rm -rf *
+
+
 To stop a node app in Linux through command line after the terminal is closed:
 you have to check Linux process.
 
