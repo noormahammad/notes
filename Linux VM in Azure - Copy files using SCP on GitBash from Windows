@@ -22,4 +22,4 @@ The -r cli flag instructs SCP to recursively copy the files and directories from
 
 SCP a directory on windows to a Linux VM:
 -------------------------------------------
-scp /tmp/ -r azureuser@myserver.eastus.cloudapp.com:/home/azureuser/logs/. 
+scp -r /tmp/ azureuser@myserver.eastus.cloudapp.com:/home/azureuser/logs/. 
