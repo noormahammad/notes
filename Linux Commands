@@ -25,6 +25,16 @@ mkdir -p ~/Desktop/a/b/c/d/e/f/g/h/ && touch ~/Desktop/a/b/c/d/e/f/g/h/1.txt
 Remove all files in a directory, navigate to the directory and type:
 rm -rf *
 
+Move files form one folder to another:
+---------------------------------------
+mv  -v ~/Downloads/* ~/Videos/
+It will move all the files and folders from Downloads folder to Videos folder.
+------------------------------------------------------------------------------
+
+To remove a directory that contains other files or directories, use the following command.
+------------------------------------------------------------------------------------------
+rm -r mydir
+----------------
 
 To stop a node app in Linux through command line after the terminal is closed:
 you have to check Linux process.
@@ -32,8 +42,10 @@ you have to check Linux process.
 An easier way to find this:
 ps -ef | grep node
 should show you all processes matching node. To kill without knowing the PID (will also kill any other processes matching node):
-
 pkill -f node
+
+you can also use 
+forever stop app.js (forever is a node package that needs to be installed. command: sudo npm install forever -g)
 --------------------------------------------------------------------------
 
 make sure that our MongoDB service will restart across VM reboots. systemctl will take care of that for us:
