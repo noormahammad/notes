@@ -6,6 +6,9 @@ dir, mkdir, cd, cd .. all works in linux too.
 create a file command: 
 touch hello.txt 
 
+----Open a file in linux and edit it----
+sudo nano filename
+
 Write multiple lines to a file from the command line in Linux:
 
 cat >> sometextfile.txt << EOF
