@@ -2,7 +2,7 @@ Open Git Bash shell in windows to run the following commands.
 Quick commands
 -----------------
 
-Copy a file up to the Linux VM
+Copy a file up to the Linux VM (Open Git Bash shell, cd to the directory. e.g cd /c/temp/)
 ---------------------------------
 scp file azureuser@azurehost:directory/targetfile
 
