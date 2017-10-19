@@ -30,7 +30,11 @@ remove a specific file:
 -----------------------
 rm <filename>
 
-
+----------------------------------------------
+Rename a file
+-------------
+mv old-file-name new-file-name
+-------------------------------------------------
 
 Move files form one folder to another:
 ---------------------------------------
