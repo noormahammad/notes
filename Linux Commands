@@ -128,3 +128,15 @@ sudo systemctl enable mongod.service
 https://blog.johncrisostomo.com/installing-mongodb-with-ssl-on-ubuntu-16-04-ms-azure/
 
 ---------------------------
+---To change the comment color in VIM text editor, do the following--------
+(we need to update .vimrc file)
+1. enter command: sudo vim ~/.vimrc
+2. add the following lines to .vimrc file
+     syntax on 
+     :highlight Comment ctermfg=green
+3. Press Esc and type ":wq" to save and quit the file
+Now if you open any file using vim, the comments will appear in green instead of obscure blue color on black background terminal
+----------------------------------------------------------------------------------------------------------------------------------
+   
+
+
