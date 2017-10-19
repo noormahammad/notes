@@ -1,0 +1,13 @@
+nginx is used as front end http web server and also as http reverse proxy server. It can also be used as Load balancer, content cache server. 
+it is also used a mail proxy server, and a generic TCP/UDP proxy server. it can handle thousands of requests per second and offers high availability and
+scalability to millions of users. 
+
+Here is How to use nginx as a reverse proxy to be able to host multiple apps on different ports on a single linux vm and serve them
+with different domains:
+
+1. login to linux vm (eithe ssh into it or use putty)
+2. run command "sudo apt-get update" (brings all packages on linux upto date)
+3. run command "sudo apt-get install nginx" (install nginx package)
+4. run command "cd /etc/nginx" and "ls" to see "sites-availabe" and "sites-enabled" folders
+5. when you put configuration file in "sites-available" directory, it will not be available when nginx is reloaded. so, we need to create
+   a symbolic link for config file in sites-available directory into "sites-enabled" directory. 
