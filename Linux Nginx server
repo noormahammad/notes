@@ -1,0 +1,27 @@
+nginx is used as front end http web server and also as http reverse proxy server. It can also be used as Load balancer, content cache server. 
+it is also used a mail proxy server, and a generic TCP/UDP proxy server. it can handle thousands of requests per second and offers high availability and
+scalability to millions of users. 
+
+Here is How to use nginx as a reverse proxy to be able to host multiple apps on different ports on a single linux vm and serve them
+with different domains:
+
+1. login to linux vm (eithe ssh into it or use putty) and run following commands
+2. $ sudo apt-get update (brings all packages on linux upto date)
+3. $ sudo apt-get install nginx (install nginx package)
+4. $ cd /etc/nginx ("ls" to see "sites-availabe" and "sites-enabled" folders)
+5. $ cd /etc/nginx/sites-available
+6. $ sudo rm default (remove default config file)
+7. $ sudo vim myconfig (create a new config file)
+8. insert following text in myconfig file 
+   server {
+            listen 80; 
+            location / {
+               proxy_pass "http://127.0.0.1"
+               }
+           }
+9. press Esc and :wq and enter to save and exit the file 
+10. When you put configuration file in "sites-available" directory, the new changes will not go into effect when nginx is reloaded. 
+   so, we need to create a symbolic link (symlink) for config file in sites-available directory into "sites-enabled" directory. 
+   Type the following command to cretae symlink: 
+   $ sudo ln -s /etc/nginx/sites-available/myconfig /etc/nginx/sites-enabled/myconfig
+   (this creates a soft symlink in sites-enabled directory)
