@@ -1,0 +1,9 @@
+To install latest version of node on linux:
+--------------------------------------------
+nvm install stable
+
+To check current version
+-------------------------------------------
+nvm current
+
+
