@@ -57,6 +57,40 @@ Insert multiple documents(records) into collection(table):
 for more, check:  https://docs.mongodb.com/manual/reference/method/db.collection.update/ 
 
 
+----------------------Mondo DB Backups (Import and Export)-----------------------------------------------
+Backup On windows:
+-----------
+1. go to bin directory of mongodb installation. 
+2. type mongodump --db databasename --out outputdirectory 
+  e.g: mongodump --db mytimepassdb --out c:\temp\backup\
+3. To backup all databases, omit "--db" arugument. e.g mongodump --out c:\temp\backkup
+
+Backup On Linux:
+---------
+1. $ sudo mkdir /var/backups/mongobackups (create a directory for backups)
+2. $ sudo mongodump --db mytimepassdb --out /var/backups/mongobackups/`date +"%m-%d-%y"` (import a database to a folder)
+3. to backup all dbs, omit --db argument. 
+    $sudo mongodump --out /var/backups/mongobackups/`date + "%m-%d-%y"` 
+
+Resote on Wndows:
+------------------
+mongorestore --db databasename --drop locationOfTheBackup
+e.g: mongorestore --db mytimepassdb --drop c:\temp\backup\mytimpeassdb\
+to restore all datbases ommit "--db". "--drop" argument is to drop the existing database before restoring.
+Restore on Linux:
+-----------------
+sudo mongorestore --db newdb --drop /var/backups/mongobackups/01-20-16/newdb/
+
+
+    
+ 
+
+
+
+
+
+
+
 
 
 
