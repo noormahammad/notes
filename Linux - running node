@@ -139,7 +139,16 @@ $ forever start app.js
 And stop it:
 $ forever stop app.js
 
-That’s it for now!
 
-Now clone one of your node projects and run them in the cloud!
-Happy Hacking!
+
+You can filter particular process as well. 
+For example, if you can’t find out where does a node.js app running, you can use the following command.
+Filter running process :
+ps -aef | grep 'node'
+
+
+
+
+
+
+
