@@ -25,3 +25,23 @@ with different domains:
    Type the following command to cretae symlink: 
    $ sudo ln -s /etc/nginx/sites-available/myconfig /etc/nginx/sites-enabled/myconfig
    (this creates a soft symlink in sites-enabled directory)
+
+
+
+
+----------------------------------Starting and Stopping ngInx Server-------------------------------------------------
+Stop nginx webserver: $ sudo service nginx stop
+Start nginx webserver: $ sudo service nginx start
+check status of webserver: $ systemctl status nginx.service
+
+
+
+
+
+
+
+
+
+
+
+
