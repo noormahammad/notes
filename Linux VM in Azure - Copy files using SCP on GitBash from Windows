@@ -20,6 +20,6 @@ scp -r azureuser@myserver.eastus.cloudapp.com:/home/azureuser/appname/. /tmp/
 
 The -r cli flag instructs SCP to recursively copy the files and directories from the point of the directory listed in the command. Also notice that the command-line syntax is similar to a cp copy command.
 
-SCP a directory on windows to a Linux VM:
+SCP a directory on windows to a Linux VM: (open git bash shell)
 -------------------------------------------
-scp -r c/tmp/. azureuser@myserver.eastus.cloudapp.com:/home/azureuser/appname
+scp -r /c/tmp/. azureuser@myserver.eastus.cloudapp.com:/home/azureuser/appname
