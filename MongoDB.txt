@@ -81,7 +81,10 @@ Restore on Linux:
 -----------------
 sudo mongorestore --db newdb --drop /var/backups/mongobackups/01-20-16/newdb/
 
-
+---------------------------------NodeJS error when node app on linux tries to access mongodb on linux server-----------
+make sure "?ssl=true" is appened to the connection string..
+mongoose.connect('mongodb://localhost:27017/lien?ssl=true');
+-----------------------------------------------------------------------------------------------------
     
  
 
