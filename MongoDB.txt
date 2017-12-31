@@ -83,13 +83,10 @@ sudo mongorestore --db newdb --drop /var/backups/mongobackups/01-20-16/newdb/
 
 ---------------------------------NodeJS error when node app on linux tries to access mongodb on linux server-----------
 make sure "?ssl=true" is appened to the connection string..
-mongoose.connect('mongodb://localhost:27017/lien?ssl=true');
------------------------------------------------------------------------------------------------------
-    
- ---------------------------------------------------connection string---------------------------------
-//Connect to Mongoose
-//mongoose.connect('mongodb://localhost:27017/admin/mytimepass?ssl=true');
 mongoose.connect('mongodb://{username}:{password}@ip-address:27017/{admin database name}/{databasename}?ssl=true');
+
+just localhost will not work in linux vm. you have to specify the ip address.
+-----------------------------------------------------------------------------------------------------
 
 
 
