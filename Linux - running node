@@ -146,6 +146,13 @@ For example, if you can’t find out where does a node.js app running, you can u
 Filter running process :
 ps -aef | grep 'node'
 
+sudo netstat -lpn |grep :'3000'
+3000 is port i was looking for, After first command you will have Process ID for that port
+
+kill -9 1192
+in my case 1192 was process Id of process running on 3000 PORT use -9 for Force kill the process
+
+
 
 
 
