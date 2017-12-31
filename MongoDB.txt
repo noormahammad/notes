@@ -86,7 +86,11 @@ make sure "?ssl=true" is appened to the connection string..
 mongoose.connect('mongodb://localhost:27017/lien?ssl=true');
 -----------------------------------------------------------------------------------------------------
     
- 
+ ---------------------------------------------------connection string---------------------------------
+//Connect to Mongoose
+//mongoose.connect('mongodb://localhost:27017/admin/mytimepass?ssl=true');
+mongoose.connect('mongodb://{username}:{password}@ip-address:27017/{admin database name}/{databasename}?ssl=true');
+
 
 
 
