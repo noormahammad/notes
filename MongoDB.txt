@@ -83,9 +83,12 @@ sudo mongorestore --db newdb --drop /var/backups/mongobackups/01-20-16/newdb/
 
 ---------------------------------NodeJS error when node app on linux tries to access mongodb on linux server-----------
 make sure "?ssl=true" is appened to the connection string..
-mongoose.connect('mongodb://{username}:{password}@ip-address:27017/{admin database name}/{databasename}?ssl=true');
+mongoose.connect('mongodb://{db username}:{db password}@ip-address:27017/{databasename}?ssl=true');
 
-just localhost will not work in linux vm. you have to specify the ip address.
+just localhost will not work in linux vm on azure. you have to specify the ip address.
+
+create a database user in admin database but change the database of the user to specific database mentioned in the connection string.
+Otherwise, you will see authentication error messages. 
 -----------------------------------------------------------------------------------------------------
 
 
