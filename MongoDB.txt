@@ -85,10 +85,24 @@ sudo mongorestore --db newdb --drop /var/backups/mongobackups/01-20-16/newdb/
 make sure "?ssl=true" is appened to the connection string..
 mongoose.connect('mongodb://{db username}:{db password}@ip-address:27017/{databasename}?ssl=true');
 
-just localhost will not work in linux vm on azure. you have to specify the ip address.
+note: specifying localhost will not work in linux vm on azure. you have to specify the ip address.
+note:
+Use following script to create a database user for a specific database and assign roles "readWrite" and "dbAdmin"
+-------------
+use yourdatabasename;
+db.createUser(
+   {
+     user: "mytimepass-appuser",
+     pwd: "some-password",
+     roles: [ "readWrite", "dbAdmin" ]
+   }
+);
 
-create a database user in admin database but change the database of the user to specific database mentioned in the connection string.
-Otherwise, you will see authentication error messages. 
+To delete an existing db user, use follwing script:
+-------------
+use yourdatabasename;
+db.dropUser("mytimepass-appuser");
+
 -----------------------------------------------------------------------------------------------------
 
 
