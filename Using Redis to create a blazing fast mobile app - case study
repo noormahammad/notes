@@ -1,0 +1,40 @@
+
+Notes from Grindr CES talk on redis labs
+video - https://redislabs.com/videos/using-redis-to-create-a-blazing-fast-mobile-app/
+
+Grindr Mobile app Case Study as explained by its CEO
+-----------------------------------------------------------
+MongooseIM - XMPP based instant messaging platform (developed by earlang)
+Amazon RDS
+XMPP protocol
+Geo-Spatial infrastructure to answer who is around you
+mongodb uses standard open source google geo-spatial algorithm
+redislabs was much better at scaling (10K api calls per second) than amazon (according to grindr ceo)
+GeoRouting in Amazon called Route 53 (Grindr uses it)
+Grindr is using Redis heavily and Amazon SQS and SNS
+Amazon SQS (Simple Queing Service) and SNS (Simple Notification Service)
+they moved away from amzon sqs and sns and now using 
+CloudAMQP, which is a rabbitMQ based very very fast earlang stack, similar to xmpp.
+CloudAMQP - industry leading RabbitMQ as a service
+they are transitioning Amazon RDS is DynamoDB
+they are using mongoDB to power geo-spatial search and whole bunch of other stuff
+they are also trying to move away from mongodb because of the fact that scaling mongo globally as cluster is start getting 
+ into geo-shorting, is difficult unless you have a strong dev-ops team. 
+they are moving to elastic search, a company called "QBOX", which is a hosted Elasticsearch Service
+One thing that powers the whole thing is the Redis cluster that we setup in the local data center.
+Not all infrastructures is replicated to all regions. only redis is replicated.
+Queuing infrastructure (pops-up in) to replicate data. 
+All my writes end up on east coast of US, and majority of reads are actually happening from Local data centers. It means that 
+ if i have a infrastructure that is very heavy read-oriented (atleast 80% reads), you are good to go, this setup works well, 
+ otherwise, if the application is very heavy write-oriented, then this wont work well. you will have to do some other fancy things 
+ like setting up multi master databases and multi-master replications, and other good stuff.
+They moved to multi-master setup using DynamoDB. they have master in every region.
+He mentioned that cassandra is nightmare to scale, they are not using it.
+They are using Akamai for cashing static content. - Akamai is the global leader in Content Delivery Network (CDN) services, 
+ making the Internet fast, reliable and secure for its customers
+Akamai is much better for CDN. Akamai offers object level invalidation capability through their API.
+You can use dynamic API calls for dynamic data. so, the output of restful api json data can be cached by CDN
+if you that data gets updated, you should have a way to invalidate that data. 
+Fastly is also another CDN company that does that. Fastly takes only 150 ms to invalidate the cached json data.
+New York Times CTO mentioned that fastly performed really well on election night. 
+Fastly able to serve 100K requests/second for new york times.
