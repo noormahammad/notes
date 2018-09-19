@@ -1,11 +1,12 @@
-1. create a directory "ssh" on mac and place the KeyPair (.pem) file in there
-2. cd to ssh directory
-   ch mod 400 (Key pair .pem file name)
-3. ssh ec2-user@(public ip addr of EC2) -i (name of .pem file)
-4. sudo su
-5. yum install httpd -y (installing apache server)
-6. cd /var/www/html
-7. nano index.html 
-8. type some html
-9. Ctrl+X followed by yes and Enter
-10. Now type public ip address in the browser
+ create a directory "ssh" on mac and place the KeyPair (.pem) file in there
+$ cd ssh
+$ ch mod 400 (Key pair .pem file name)
+$ ssh ec2-user@(public ip addr of EC2) -i (name of .pem file)
+$ sudo su
+$ yum install httpd -y (installing apache server)
+$ sudo service httpd start  
+$ cd /var/www/html
+$ nano index.html 
+  type some html
+ Ctrl+X followed by yes and Enter
+ Now type public ip address in the browser
