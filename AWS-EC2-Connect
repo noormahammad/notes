@@ -5,8 +5,10 @@ $ ssh ec2-user@(public ip addr of EC2) -i (name of .pem file)
 $ sudo su
 $ yum install httpd -y (installing apache server)
 $ sudo service httpd start  
+$ chkconfig httpd on  (this make sure apache server is started automatically when ec2 is restarted)
 $ cd /var/www/html
 $ nano index.html 
   type some html
  Ctrl+X followed by yes and Enter
  Now type public ip address in the browser
+
