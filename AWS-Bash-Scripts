@@ -1,0 +1,12 @@
+Creating EC2 instance with Apache WebServer and deploying html files automatically:
+-----------------------------------------------------------------------------------
+when creating EC2 instance from AWS console, simply copy and past the following bash script in the "User data" textbox under 
+"Advance Details" section:
+--------------------------------------------------
+#!/bin/bash
+yum update -y
+yum install httpd -y
+service http start
+chkconfig httpd on
+aws s3 cp s3://cloudguru-mywebsitebucket/index.html /var/www/html
+---------------------------------------------------------------------
