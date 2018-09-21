@@ -8,5 +8,5 @@ yum update -y
 yum install httpd -y
 service httpd start
 chkconfig httpd on
-aws s3 cp s3://cloudguru-mywebsitebucket/index.html /var/www/html
+aws s3 cp s3://cloudguru-mywebsitebucket /var/www/html --recursive
 ---------------------------------------------------------------------
