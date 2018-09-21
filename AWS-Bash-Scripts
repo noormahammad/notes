@@ -6,7 +6,7 @@ when creating EC2 instance from AWS console, simply copy and past the following 
 #!/bin/bash
 yum update -y
 yum install httpd -y
-service http start
+service httpd start
 chkconfig httpd on
 aws s3 cp s3://cloudguru-mywebsitebucket/index.html /var/www/html
 ---------------------------------------------------------------------
