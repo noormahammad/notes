@@ -1,7 +1,7 @@
 Creating EC2 instance with Apache WebServer and deploying html files automatically:
 -----------------------------------------------------------------------------------
 when creating EC2 instance from AWS console, simply copy and past the following bash script in the "User data" textbox under 
-"Advance Details" section:
+"Advance Details" section: (make sure to assign S3 Role to the instance)
 --------------------------------------------------
 #!/bin/bash
 yum update -y
