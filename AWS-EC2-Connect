@@ -14,7 +14,7 @@ $ nano index.html
 
 ----------------------------------------------------------------------------------------------
 OR
-simply provide the following script in additional details section when creating new EC2 instance:
+simply provide the following script in "user data" textbox under "additional details" section when creating new EC2 instance in AWS:
 
 #!/bin/bash
 sudo su
