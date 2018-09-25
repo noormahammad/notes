@@ -12,3 +12,15 @@ $ nano index.html
  Ctrl+X followed by yes and Enter
  Now type public ip address in the browser
 
+----------------------------------------------------------------------------------------------
+OR
+simply provide the following script in additional details section when creating new EC2 instance:
+
+#!/bin/bash
+sudo su
+yum update -y
+yum install httpd -y
+cd /var/www/html
+echo "<html><h1>Web Server 2 - Northern Virginia</h1></html>" > index.html
+service httpd start
+chkconfig httpd on
