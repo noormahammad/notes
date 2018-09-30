@@ -1,10 +1,6 @@
 #!/bin/bash
 yum update -y
 yum install httpd php php-mysql stress -y
-cd /etc/httpd/conf
-cp httpd.conf htttpdconfbackup.conf
-rm -rf httpd.conf
-wget https://s3-eu-west-1.amazonaws.com/acloudguru-wp/httpd.conf
 cd /var/www/html
 echo "healthy" > healthy.html
 wget https://wordpress.org/latest.tar.gz
