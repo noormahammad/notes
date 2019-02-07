@@ -1,0 +1,20 @@
+moviepy - (https://pypi.org/project/moviepy/)  (https://github.com/Zulko/moviepy)
+Scikit-Video - http://www.scikit-video.org/stable/index.html
+pillow - python imaging library fork - https://pillow.readthedocs.io/en/latest/
+imagemagic
+scikit
+scippi
+
+
+For advanced image processing, you will need one or several of the following packages:
+
+PyGame is needed for video and sound previews
+(not relevant if you intend to work with MoviePy on a server but essential for advanced video editing by hand).
+
+The Python Imaging Library (PIL) or, even better, its branch Pillow.
+Scipy (for tracking, segmenting, etc.) can be used to resize video clips if PIL and OpenCV are not installed.
+Scikit Image may be needed for some advanced image manipulation.
+OpenCV 2.4.6 or a more recent version (one that provides the package cv2) may be needed for some advanced image manipulation.
+Matplotlib
+ImageMagick is not strictly required, but needed if you want to incorporate texts. It can also be used as a backend for GIFs, 
+though you can also create GIFs with MoviePy without ImageMagick.
