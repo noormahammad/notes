@@ -19,3 +19,7 @@ OpenCV 2.4.6 or a more recent version (one that provides the package cv2) may be
 Matplotlib
 ImageMagick is not strictly required, but needed if you want to incorporate texts. It can also be used as a backend for GIFs, 
 though you can also create GIFs with MoviePy without ImageMagick.
+
+run from command prompt:
+source venv/bin/activate
+func host start
