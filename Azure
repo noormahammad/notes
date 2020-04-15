@@ -1,0 +1,13 @@
+-----------------------Creating addtional database users for Azure SQL Database------------------
+
+---------------------This must be run in master database----------------------
+create LOGIN rptuserLogin with password='supersecretpassword';
+------------------------------------------------------------------------------
+
+-----------------These must be run against the database-----------------------
+create USER rptuser from LOGIN rptuserLogin;
+
+EXEC sp_addrolemember 'db_datareader', 'rptuser';
+EXEC sp_addrolemember 'db_datawriter', 'rptuser';
+
+--------------------------------------------------------------------------------
