@@ -1,4 +1,4 @@
-# Backup database
+# Backup postgres database
 
 ## create a dump file using pg_dump that contains data to be loaded
  To back up an existing PostgreSQL database on-premises or in a VM, run the following command:
