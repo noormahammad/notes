@@ -1,3 +1,8 @@
+This will convert the MOV to H.264 video and AAC audio:
+----------------------------------------------------------
+ffmpeg -i input.mov -c:v libx264 -c:a aac -vf format=yuv420p -movflags +faststart output.mp4
+----------------------------------------------------------------------------------
+
 ----------MongoDB Set up-------
 Install MongoDB msi from mongodb.org and install-> custom-> choose d:\mongodb directory for installation.
 Create "d:\mongodb\data\db" and "d:\mongodb\log" folders
