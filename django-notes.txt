@@ -1,0 +1,15 @@
+Setup python for django on MAC: https://www.codingforentrepreneurs.com/guides/install-python-on-macos/
+
+>mkdir trydjango
+>cd trydjango
+>python -m venv . (creates virtual environment with same name as folder)
+>source /bin/activate (activate virtual environment)
+>python -m pip install Django==3.0
+>pip freeze (to see the user installed pythong packages)
+>mkdir src
+>cd src
+>django-admin startproject trydjango . (creates a new django project named "trydjango" in the current directory)
+>python manage.py migrate (applies migrations for apps defined in settings.py)
+>python manage.py runserver (run the web application on a local development server http://127.0.0.1:8000/)
+>python manage.py createsuperuser (creates a super user (admin) in database (sqlite3 by default))
+>go to http://127.0.0.1:8000/admin to login using credentials provided above
