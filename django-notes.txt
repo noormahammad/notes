@@ -8,8 +8,74 @@ Setup python for django on MAC: https://www.codingforentrepreneurs.com/guides/in
 >pip freeze (to see the user installed pythong packages)
 >mkdir src
 >cd src
+
+Create new django project
+------------------------
 >django-admin startproject trydjango . (creates a new django project named "trydjango" in the current directory)
+
+Apply migrations
+------------------
 >python manage.py migrate (applies migrations for apps defined in settings.py)
+
+Run the app
+-------------
 >python manage.py runserver (run the web application on a local development server http://127.0.0.1:8000/)
+
+Create Super User
+------------------
 >python manage.py createsuperuser (creates a super user (admin) in database (sqlite3 by default))
 >go to http://127.0.0.1:8000/admin to login using credentials provided above
+
+Create a custom app (component)
+--------------------------------
+>python manage.py startapp products
+add 'products' to "INSTALLED_APPS" arrary in settings.py 
+
+Create a model
+---------------
+open up "products/models.py" and add the following class (maps to the database automatically)
+
+class Product(models.Model):
+    title       = models.TextField()
+    description = models.TextField()
+    price       = models.TextField()
+    summary     = models.TextField(default='this is a nice product.')
+
+Sync model with database (db migration)
+---------------------------------------
+>python manage.py makemigrations
+>python manage.py migrate
+
+Register your model (products/admin.py)
+--------------------------
+open up admin.py, add the following to register the model:
+
+from .models import Product
+admin.site.register(Product)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
