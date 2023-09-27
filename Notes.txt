@@ -113,5 +113,10 @@ Move Xcode_13.2.1.xip to /Applications
 cd Applications
 xip --expand /Applications/Xcode_13.2.1.xip
 
+----switch to default xcode version-----
+sudo xcode-select -switch /Applications/Xcode.app
+
+
+
 
  
