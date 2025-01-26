@@ -1,0 +1,578 @@
+import Foundation
+
+//---------------------------------------------------------Variables, Strings--------------------------------------------------------------//
+let name = "Taylor"
+let age = 26
+let message = "I am \(name) and I am \(age) years old"
+print(age.isMultiple(of: 13))
+print(message)
+print(message.count)
+
+//boolean
+var isSaved = false;
+isSaved.toggle()
+print(isSaved)
+
+//---------------------------------------------------------Arrays--------------------------------------------------------------//
+var myItems = [4, 5, 3, 0, 7, 2, 3]
+var colors = ["Red", "Green", "Blue"]
+colors.append("Yellow")
+myItems.remove(at: 2)
+print(myItems[2])
+
+//dictionary
+let employee = [
+    "name": "Peter",
+    "job" : "Enterprise Architect",
+    "lastname": "dkfj"
+]
+print(employee["name", default: "Unknown"])
+
+//---------------------------------------------------------Sets -- duplicates and order are ignored in Sets----------------------------//
+var numbers = Set([1,5,3,5,3,7,6])
+print(numbers)
+numbers.insert(10)
+print(numbers.contains(11)) //runs instantly even if the set has 10 million items
+
+//---------------------------------------------------------------Enums---------------------------------------------------------------//
+enum Weekday {
+    case monday, tuesday, wednesday, thursday, friday
+}
+var day = Weekday.monday
+day = .friday
+print(day)
+
+//Type annonation
+let player: String = "Tom"
+let luckyNumber: Int = 13
+let pi: Double = 3.14
+let isEnabled: Bool = true
+
+var albums: Array<String> = ["Backstreet boys", "The Green", "Nation"]
+var user: Dictionary<String, String> = ["Name": "Peter", "job": "Enterprise Architect"]
+var books: Set<String> = Set(["Python for Kids", "Release your Breaks"])
+
+//another syntax for arrays and dictionaries
+var albums1: [String] = ["Backstreet boys", "The Green", "Nation"]
+var user1: [String: String] = ["Name": "Peter", "job": "Enterprise Architect"]
+var books1: Set<String> = Set(["Python for Kids", "Release your Breaks"])
+
+// creating empty collections
+var teams: [String] = [String]()
+var clues = [String]()
+
+enum UIStyle {
+    case light, dark, system
+}
+var style: UIStyle = .dark
+
+//-----------------------------------------------------------condtions---------------------------------------------------------------------
+let age1 = 16
+
+if age1 < 12 {
+    print("you cannot vote")
+} else if age1 < 18 {
+    print("you can soon vote")
+} else {
+    print("you can vote now")
+}
+
+let temp = 26
+
+if temp >= 20 && temp <= 30 {
+    print("It's a nice day")
+} else if temp < 10 || temp < 20 {
+    print("It's cold today")
+}
+
+//----------------------------------------------------------switch case---------------------------------------------------------------------
+switch style {
+case UIStyle.dark :
+    print("dark theme active")
+case UIStyle.light :
+    print("light theme")
+default:
+    print("theme is other")
+}
+
+//---------------------------------------------------------ternary condition operator--------------------------------------------------------
+let stockPrice = 99
+var isExpensive : Bool = stockPrice > 100 ? true : false
+
+//---------------------------------------------------------------------------Loops-----------------------------------------------------------
+//for loop
+let stocks = ["MSFT", "MSTR", "AVGO", "IBKR", "TSLA", "AMD"]
+
+for stock in stocks {
+    print("stock symbol is \(stock)")
+}
+
+for i in 1...10 {
+    print(" 8 X \(i) = \(i * 8)")
+}
+
+var lyric = "Haters gonna"
+//if you dont care about the variable, you can use underscore _
+for _ in 1...5 {
+    lyric +=  " hate"
+}
+print(lyric)
+
+//while loop
+var count = 10
+while count > 0 {
+    print("\(count)...")
+    count -= 1
+}
+
+let files = ["adf.jpg", "work.txt", "sdfdf.jpg", "dsfdsfsdf.csv"]
+
+for file in files {
+    if file.hasSuffix(".jpg") == false {
+        continue
+    }
+    print("Found picture \(file)")
+}
+
+//-----------------------------------------------------------------------Functions---------------------------------------------------------//
+func printTimesTable(number: Int){
+    for i in 1...10 {
+        print("\(number) x \(i) = \(number *  i)")
+    }
+}
+printTimesTable(number: 4)
+
+func rollDice() -> Int {
+    Int.random(in: 1...6)
+}
+
+let result = rollDice()
+print(result)
+
+func getUser() -> (firstName: String, lastName: String) {
+    (firstName: "Peter", lastName: "Theo")
+}
+let user2 = getUser()
+print("Name: \(user2.firstName) \(user2.lastName)")
+
+let (firstName, _) = getUser()
+print(firstName)
+
+//if you dont want to pass variable name, then use under score
+func isUppercase(_ input: String ) -> Bool {
+    input == input.uppercased()
+}
+let result1 = isUppercase("HELLO HOW ARE YOU?")
+
+func printTimesTable(for number:Int){
+    for i in 1...10 {
+        print("\(number) x \(i) = \(number * i)")
+    }
+}
+printTimesTable(for: 5)
+
+//default values in parametes
+
+func greet(_ person: String, formal: Bool = false) {
+    if formal {
+        print("Welcome, \(person)")
+    } else {
+        print("Hi \(person)")
+    }
+}
+print(greet("Peter", formal:true))
+print(greet("Pradeep"))
+
+//Errors
+enum PasswordErrors: Error {
+    case short, obvious
+}
+
+func checkPassword(_ password: String) throws -> String {
+    if password.count < 5 {
+        throw PasswordErrors.short
+    } else if password == "12345" {
+        throw PasswordErrors.obvious
+    }
+    
+    if password.count < 10 {
+        return "OK"
+    } else {
+        return "Good"
+    }
+}
+
+do {
+    let result = try checkPassword("12345yhyruytutui")
+    print(result)
+} catch PasswordErrors.short {
+    print("Password is too short")
+} catch PasswordErrors.obvious {
+    print("Password is too obvious")
+} catch { //generic catch all clause
+    print("Some error occured")
+}
+
+//------------------------------------------------------------Closures-----------------------------------------------------------------//
+
+// you can assign functionality to constant or variable
+let sayHello = {
+    print("Hello World")
+}
+sayHello() // you call the closure just like a function
+
+//pass a parameter to the closure
+
+let sayHello1 = { (name: String) -> String in // here the "in" keyword marks end of the segment of the parameters and the return type.
+     "Hi, \(name)" //anything after the "in" keyword, is the body of the closure itself
+}
+print(sayHello1("James"))
+
+let team = ["Gloria", "Susan", "Tiffiny", "Tasha"]
+// ---------------------------------- closure filter ----------------------------------------------//
+let namesStartWithT = team.filter({(name:String) -> Bool in
+    name.hasPrefix("T")
+})
+print(namesStartWithT)
+
+//---------------simplified clousre syntax---------------------------
+let namesStartWithT1 = team.filter({ name in
+    name.hasPrefix("T")
+})
+print(namesStartWithT1)
+
+let namesStartWithT2 = team.filter { name in name.hasPrefix("T")} // trailing closure syntax
+print(namesStartWithT2)
+
+let namesStartWithT3 = team.filter {$0.hasPrefix("T") } //short parameter names, $0, $1, etc
+print(namesStartWithT3)
+
+//------------------------------------------------------------Struct-----------------------------------------------------------------//
+
+//stuct let us make our own custom data types
+struct Album {
+    let title: String
+    let artist: String
+    var isReleased = true
+    
+    func printSummary() {
+        print("\(title) by \(artist)")
+    }
+    mutating func removeFromSale() {
+        isReleased = false
+    }
+}
+
+var red = Album(title: "Red", artist: "Taylor Swift")
+print(red.title)
+red.printSummary()
+print(red.isReleased)
+red.removeFromSale()
+print(red.isReleased)
+
+struct Employee {
+    let name: String
+    var vacationAllowed = 14
+    var vacationTaken = 0
+    
+    var vacationRemaining: Int {
+        get {
+            vacationAllowed - vacationTaken
+        }
+        set {
+            vacationAllowed = vacationTaken + newValue
+        }
+    }
+}
+
+var person = Employee(name: "Peter")
+person.vacationRemaining = 10
+print(person.vacationAllowed)
+
+
+//--------------------------------------Property Observers -- didSet and -----------------------------------------------------------------//
+//property observers are pieces of code that runs when a property changes. there are two types. didSet (called after the change) and willSet (called before the property changes)
+
+struct Game {
+    var score = 0 {
+        didSet { // called after the property is changed
+            print("Score is now \(score)")
+        }
+        willSet { //called before the property value is changed
+            print("Score is about to be changed. now it is \(score)")
+        }
+    }
+}
+
+var game = Game()
+game.score += 20
+game.score -= 5
+
+// Initializers are special functions that run when new instance of the struct is created. It must make sure that all properties inside the struct have all values by the time it finishes. Swift will make one for you automatically for your struct. it is called member-wise initializers. sometimes you can make your own to have custom control
+
+struct Player {
+    let name: String
+    let number: Int
+    
+    init(name: String) {
+        self.name = name
+        self.number = Int.random(in: 1...99)
+    }
+}
+
+var player1 = Player(name: "Peter")
+print(player1.number)
+
+//----------------access controls: private, private(set), File Private, Public--------------------------------------///
+
+struct BankAccount {
+    private(set) var funds = 0 //cannot be changed outside of struct
+    
+    mutating func deposit(amount: Int){
+        funds += amount
+    }
+    mutating func withdraw(amount: Int) {
+        funds -= amount
+    }
+}
+
+var bankAccount1 = BankAccount(funds: 1000)
+bankAccount1.deposit(amount: 200)
+print("new balance \(bankAccount1.funds)")
+bankAccount1.withdraw(amount: 500)
+print("new balance\(bankAccount1.funds)")
+
+//-------------------------------Static Properties in Struct --------------------------------------///
+
+struct AppData {
+    static let version = "1.3 beta "
+    static let settingsFile = "settings.json"
+}
+
+print(AppData.version) //access directly throught out the app without having to initilzie the struct
+
+
+//------------------------------------------------Classes---------------------------------------------------------///
+
+class Employee2 {
+    let hours: Int
+    
+    init(hours: Int) { //initialize is mandatory
+        self.hours = hours
+    }
+    
+    func printSummary() {
+        print("I work \(hours) hours a day)")
+    }
+}
+
+class Developer: Employee2 {
+    func work() {
+        print("I'm coding for \(hours) hours a day")
+    }
+    //since it is not declaring any additional properties, it does not need sepearte init. it uses the parent init
+    override func printSummary() {
+        print("I spent \(hours) hours a day fighting over tabs vs spaces")
+    }
+}
+
+var developer = Developer(hours: 20)
+developer.work()
+developer.printSummary()
+
+class Vehicle {
+    let isElectric: Bool
+    
+    init(isElectric: Bool) {
+        self.isElectric = isElectric
+    }
+}
+
+class Car: Vehicle {
+    let isConvertinle: Bool
+    
+    init(isConvertinle: Bool, isElectric: Bool) { // initi is mandatory because there is additional property in class Car
+        self.isConvertinle = isConvertinle
+        super.init(isElectric: isElectric) //need to call parent init using super
+    }
+}
+
+//copies of class objects share the same data whee as the structs don't. classes are of reference type and structs are value type.
+class Actor {
+    var name = "Nicolas Cage"
+}
+
+var actor1 = Actor()
+var actor2 = actor1
+
+actor2.name = "Tom Crise"
+print(actor1.name)
+print(actor2.name)
+
+//---------------------class deinitializers ---------//
+class Site {
+    let id: Int
+    
+    init(id: Int) {
+        self.id = id
+        print("Site \(id): I've been created")
+    }
+    
+    deinit {
+        print("Site \(id): I've been destroyed")
+    }
+}
+
+for i in 1...3 {
+    let site = Site(id: i)
+    print("Site \(site.id): I am in control")
+} //as soon as the control leaves the iteration, the site created in that iteration will be deinitilized/destroyed
+
+class Singer {
+    var name = "Adele"
+}
+
+var singer = Singer()
+singer.name = "Justin"
+print(singer.name) // classes dont' need to have mutating property for their members. it can always change, but not the case for struct
+
+
+//------------------------------------------------Protocols---------------------------------------------------------///
+//protocols define functionality that we expect other types to support and swift will ensure they follow the rules correctly
+
+protocol Vehicle1 {
+    var name: String { get }
+    var currentPassengers: Int { get set }
+    func estimateTime(for distance: Int) -> Int
+    func travel(distince: Int)
+}
+
+// you can conform multiple protocols also, by simplyng Vehicle1, Protocol2, Protocol3, etc.
+//if you want to subclass and then conform to a protocol, add the class first and then protocal1, protocol2, etc.
+struct Car1: Vehicle1 {
+    let name = "Car"
+    var currentPassengers = 1
+    func estimateTime(for distance: Int) -> Int {
+        distance / 50
+    }
+    func travel(distince: Int) {
+        print("I am driving \(distince) km")
+    }
+    func openSunroof() {
+        print("I's a nice day!")
+    }
+}
+
+func commute(distance: Int, using vehicle: Vehicle1) {
+    if vehicle.estimateTime(for: distance) > 100 {
+        print("too slow!")
+    } else {
+        vehicle.travel(distince: distance)
+    }
+}
+
+let car3 = Car1()
+commute(distance: 100, using: car3)
+
+
+//----------------------------------------------------------Extensions-----------------------------------------------------------///
+
+extension String {
+    func trimmed() -> String {
+        self.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
+    mutating func trim() {
+        self = self.trimmed()
+    }
+    
+    var lines: [String] {
+        self.components(separatedBy: .newlines)
+    }
+}
+
+var quote = "    hellow world lkdjfsalf  kaldsjf dsf  "
+quote.trim()
+print(quote)
+
+let lyrics = """
+Hello
+How are you
+What is happening
+"""
+
+print("number of lines in this string are: \(lyrics.lines.count)")
+
+// ------------ Protocol extensions -----------------//
+//protocol extensions let us add computed properties and methods to the whole protocol so that any types conforming to it will get access to them. For example, arrays, dictionaries and Sets are conformed to the common protocol called "Collections". so when we add a computeed property to that, all 3 of them will get access to it
+
+extension Collection {
+    var isNotEmpty: Bool { //computed property
+        isEmpty == false
+    }
+}
+
+let guests = ["Mario", "Goose", "Pathan", "Superman"]
+
+if guests.isNotEmpty {
+    print("Guest Count: \(guests.count)")
+}
+
+//---------------------------------------------------------- Optionals (Nullables in C#)------------------------------------------------///
+
+let opposites = [
+    "Mario": "Wario",
+    "Luigi": "Walugigi"
+]
+
+let peachOpposite = opposites["Peach"]
+
+if let marioOpposite = opposites["Mario"] {
+    print("Mario's opposite is \(marioOpposite)")
+}
+
+func printSquare(of number: Int?) {
+    guard let number = number else {
+        print("Missing input")
+        return
+    }
+    
+    //if you are here, that menas number is present and not null
+    print("\(number) x \(number) is \(number * number)")
+}
+
+printSquare(of: nil)
+
+// Nil Colescent
+
+let tvShows = ["Game of Thrones", "Dexter", "Breaking Bad"]
+let favorite = tvShows.randomElement() ?? "None"
+print(favorite)
+
+let input = ""
+let numner = Int(input) ?? 0
+print(numner)
+
+//---------------------------optional chaining ---------
+
+let names = ["Arya", "Bran", "Robb", "Sansa"]
+
+let chosen = names.randomElement()?.uppercased()
+print("Next in line: \(chosen ?? "No one")")
+
+///------optional try when there is an error
+
+enum UserError: Error {
+    case badID, networkFailed
+}
+
+func getUser(id: Int) throws -> String {
+    throw UserError.networkFailed
+}
+
+if let user = try? getUser(id: 45) { //here we don't care what type of error we get, only care if we get user or not. if you want to know what kind of error is thrown, then use do, try catch blocks
+    print("User: \(user)")
+}
+
+
+
