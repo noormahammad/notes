@@ -28,7 +28,7 @@ struct ContentView: View {
         return feet
     }
     
-    var outputUnit: Double {
+    var outputUnit: String {
         var output = 1.0
         switch outputUnitType {
         case "Meter":
@@ -40,7 +40,7 @@ struct ContentView: View {
         default:
             output = inputUnitInFeet
         }
-        return output
+        return output.formatted()
     }
     
     let unitTypes = ["Meter", "Kilometer", "Foot", "Yard"]
