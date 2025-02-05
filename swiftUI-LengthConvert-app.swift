@@ -67,10 +67,6 @@ struct ContentView: View {
                         .pickerStyle(.segmented)
                     
                 }
-                Section() {
-                    
-                }
-                
             }
             .navigationTitle("Length Conversion")
             .navigationBarTitleDisplayMode(.inline)
