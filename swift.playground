@@ -574,5 +574,29 @@ if let user = try? getUser(id: 45) { //here we don't care what type of error we 
     print("User: \(user)")
 }
 
+--------------Swift UI------------------------------
+using Z-Stack:
+
+import SwiftUI
+
+struct ContentView: View {
+    var body: some View {
+        ZStack {
+            VStack(spacing: 0) {
+                Color.red
+                Color.blue
+            }
+            Text("Your Content")
+                .padding(50)
+                .background(.ultraThinMaterial)
+        }.ignoresSafeArea()
+    }
+}
+-------------------------
+
+
+
+
+
 
 
