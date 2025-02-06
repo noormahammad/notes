@@ -575,7 +575,7 @@ if let user = try? getUser(id: 45) { //here we don't care what type of error we 
 }
 
 --------------Swift UI------------------------------
-using Z-Stack:
+-----using Z-Stack:
 
 import SwiftUI
 
@@ -592,7 +592,64 @@ struct ContentView: View {
         }.ignoresSafeArea()
     }
 }
--------------------------
+------- Gradientes ---
+
+--Liner Gradeint 
+struct ContentView: View {
+    var body: some View {
+        ZStack {
+            LinearGradient(stops:
+                            [.init(color:.white, location: 0.45),
+                             .init(color:.black, location: 0.55)
+                            ], startPoint: .top, endPoint: .bottom)
+
+            //LinearGradient(colors: [.white, .black], startPoint: .leading, endPoint: .trailing)
+        }.ignoresSafeArea()
+    }
+}
+
+--Radial Gradient 
+struct ContentView: View {
+    var body: some View {
+        ZStack {
+            RadialGradient(colors: [.blue, .black], center: .center, startRadius: 20, endRadius: 200)
+        }.ignoresSafeArea()
+    }
+}
+
+--Angular Gradient
+struct ContentView: View {
+    var body: some View {
+        ZStack {
+            AngularGradient(colors: [.blue, .red, .green, .purple, .blue], center: .center)
+            AngularGradient(stops: [
+                .init(color: .blue, location: 0.12),
+                .init(color: .red, location: 0.40),
+                .init(color: .yellow, location: 0.60),
+                .init(color: .purple, location: 0.80),
+                .init(color: .blue, location: 0.90)
+                
+            ], center: .center)
+        }.ignoresSafeArea()
+    }
+}
+
+---In-built gradient on any color
+struct ContentView: View {
+    var body: some View {
+        ZStack {
+            Text("Your Content here")
+                .frame(maxWidth:.infinity, maxHeight: .infinity)
+                .foregroundStyle(.white)
+                .background(.indigo.gradient)
+        }.ignoresSafeArea()
+    }
+}
+
+
+
+
+
 
 
 
