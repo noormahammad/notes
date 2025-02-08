@@ -702,8 +702,23 @@ struct ContentView: View {
     ContentView()
 }
 ---------------------------------------Alerts---------------------------------------------
-
-
+import SwiftUI
+struct ContentView: View {
+    @State var message = ""
+    @State var count = 0
+    @State private var isAlertShowing = false
+    var body: some View {
+        Button("Show Alert", role: .destructive) {
+            isAlertShowing = true
+        }
+        .buttonStyle(.borderedProminent)
+        .alert("This is Alert Title", isPresented: $isAlertShowing) {
+            Button("OK", role: .destructive) {}
+        } message: {
+            Text("This is the body of the alert message")
+        }
+    }
+}
 
 
 
