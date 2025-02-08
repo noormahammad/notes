@@ -671,10 +671,13 @@ struct ContentView: View {
             Text("Click me")
                 .padding(15)
                 .foregroundStyle(.white)
+                .font(.largeTitle.weight(.semibold))
                 .background(.red)
         }
         
         Image("newyork")
+            .clipShape(.capsule)
+            .shadow(radius: 5)
         
         // Buttons with sytem image icons (look up icon names using SF Symbols mac os app)
         Button("Delete", systemImage: "trash", role: .destructive, action: printHelloWorld)
