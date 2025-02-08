@@ -646,6 +646,66 @@ struct ContentView: View {
     }
 }
 
+-------------------------------------------------------Buttons and Images---------------------------------------------------------
+import SwiftUI
+
+struct ContentView: View {
+    @State var message = ""
+    @State var count = 0
+    @State var isAlertShowing = false
+    var body: some View {
+        Button("Button 1") {}
+            .buttonStyle(.bordered)
+        Button("Button 2", role: .destructive) {}
+            .buttonStyle(.bordered)
+       
+        Button("Button 1") {}
+            .buttonStyle(.borderedProminent)
+        Button("Button 2", role: .destructive) {}
+            .buttonStyle(.borderedProminent)
+        
+        //Custom buttons
+        Button {
+            printHelloWorld()
+        } label: {
+            Text("Click me")
+                .padding(15)
+                .foregroundStyle(.white)
+                .background(.red)
+        }
+        
+        Image("newyork")
+        
+        // Buttons with sytem image icons (look up icon names using SF Symbols mac os app)
+        Button("Delete", systemImage: "trash", role: .destructive, action: printHelloWorld)
+        Button("Add", systemImage: "plus") {}
+        Button("Edit", systemImage: "pencil"){}.tint(.green)
+        Button("Upload", systemImage: "icloud.and.arrow.up.fill") {}.tint(.purple)
+        
+        //Buttons with action
+        Button("Delete Selection", role: .destructive, action: printHelloWorld)
+            .buttonStyle(.borderedProminent)
+            .tint(.pink)
+        Text("\(message)")
+    }
+    
+    func printHelloWorld() {
+        if count % 2 == 0 {
+            message = "Hello World"
+        } else {
+            message = ""
+        }
+        count += 1
+    }
+}
+#Preview {
+    ContentView()
+}
+---------------------------------------Alerts---------------------------------------------
+
+
+
+
 
 
 
