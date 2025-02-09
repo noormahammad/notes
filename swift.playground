@@ -865,7 +865,23 @@ struct ContentView: View {
         .font(.title) //applies to all elements inside the VStack, but child modifers take precedence
     }
 }
--------
+-----------------------Views as properties----------
+
+import SwiftUI
+
+struct ContentView: View {
+    let view1 = Text("Hello World")
+    let view2 = Text("How Are you")
+    var body: some View {
+        VStack {
+            view1
+            view2
+                .foregroundStyle(.red)
+        }
+    }
+}
+
+
 
 
 
