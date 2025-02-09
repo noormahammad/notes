@@ -832,7 +832,20 @@ struct ContentView: View {
     ContentView()
 }
 
+-------------------Use ternary operators instead of if conditions where possible for performance ---------
+---below, if you use if conditions and use two different buttons, swiftUI needs to create two buttons and need to lot of work, where as if ternary operator is used, it only works with one button
 
+import SwiftUI
+
+struct ContentView: View {
+    @State private var isUserRead = false
+    var body: some View {
+        Button("Hello World!") {
+            isUserRead.toggle()
+        }
+        .foregroundStyle(isUserRead ? .blue: .red)
+    }
+}
 
 
 
