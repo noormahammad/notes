@@ -1173,3 +1173,35 @@ struct ContentView: View {
     
 }
 
+----------------------------------------------------List View---------------------------------------
+
+import SwiftUI
+
+struct ContentView: View {
+    var people = ["Steve", "Marcoon", "John", "Balu", "Peter", "Smith"]
+    var body: some View {
+        List {
+            Section("First Section ") {
+                Text("Hello world")
+                Text("Hello World")
+            }
+            
+            Section("Second section") {
+                ForEach(0..<5) {
+                    Text("\($0)")
+                }
+            }
+            
+            Section("Third section") {
+                Text("Hello world")
+                Text("Hello World")
+            }
+        }.listStyle(.grouped)
+    }
+}
+
+#Preview {
+    ContentView()
+}
+
+
