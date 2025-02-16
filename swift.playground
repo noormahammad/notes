@@ -1254,3 +1254,33 @@ struct ContentView: View {
         return lines
     }
 }
+
+--------------------------String Spell Check using UITextChecker-------------------------------
+import SwiftUI
+
+struct ContentView: View {
+    @State private var userInput = ""
+    var body: some View {
+        NavigationStack {
+            Form {
+                TextField(" ", text: $userInput)
+                Section("Is It Spelled Correctly?") {
+                    Text(IsItSpelleCorrectly(userInput) ? "Yes": "No")
+                }
+            }
+            .navigationTitle("Spell Checker")
+            .navigationBarTitleDisplayMode(.inline)
+        }
+    }
+    
+    func IsItSpelleCorrectly(_ word: String) -> Bool {
+        var checker = UITextChecker()
+        
+        var range = NSRange(location: 0, length: word.utf16.count)
+        let mispelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
+        
+        let allGood = mispelledRange.location == NSNotFound
+        
+        return allGood
+    }
+}
