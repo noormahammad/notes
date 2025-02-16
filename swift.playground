@@ -704,6 +704,14 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+
+--------------------------TextField----------------------
+ TextField("Amount", value: $checkAmount, format:
+                            .currency(code: Locale.current.currency?.identifier ?? "USD"))
+                    .keyboardType(.decimalPad)
+                    .focused($isAmountFocused)
+
+------------------------------------------------------
 ---------------------------------------Alerts---------------------------------------------
 import SwiftUI
 struct ContentView: View {
