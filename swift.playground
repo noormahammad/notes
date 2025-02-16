@@ -1203,5 +1203,12 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
-
-
+-------------------------------------reading resources from a bundle ----------------------
+func testBundle() {
+        if fileUrl = Bundle.main.url(forResource: "profile", withExtension: ".jpeg") {
+            if let fileContents = try? String(contentsOf: fileUrl) {
+                //url is now availale as a strign in fileContents
+            }
+        }
+    }
+-------------
