@@ -1284,3 +1284,14 @@ struct ContentView: View {
         return allGood
     }
 }
+
+------------------ disable auto capitalize and auto correction --------
+TextField("Enter your word", text: $newWord)
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
+
+------------------- simple Animation --------------
+withAnimation {
+            words.insert(answer, at: 0)
+        }
+
