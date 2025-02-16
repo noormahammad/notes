@@ -1211,4 +1211,38 @@ func testBundle() {
             }
         }
     }
--------------
+------------------------------------ Strings -------------------------
+import SwiftUI
+
+struct ContentView: View {
+    var body: some View {
+        let message = "a b c"
+        var letters = getLettersOfTheString(message)
+        ForEach(letters, id: \.self) { letter in
+            Text("\(letter)")
+        }
+        
+        let paragraph = """
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                ion ullamco laboris nisi ut aliquip ex ea commodo co dolore eu fugiat nulla pariatur.
+                Excepteur sint occaec
+                dent, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          """
+        
+        let lines = getLinesOftheString(paragraph)
+        ForEach(lines, id: \.self) { line in
+            var x = line.trimmingCharacters(in: .whitespaces)
+            Text(x)
+        }
+    }
+    
+    func getLettersOfTheString(_ message: String) -> [String] {
+        let letters = message.components(separatedBy: " ")
+        return letters
+    }
+    
+    func getLinesOftheString(_ message: String) -> [String] {
+        let lines = message.components(separatedBy: "\n")
+        return lines
+    }
+}
