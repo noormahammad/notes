@@ -1636,8 +1636,29 @@ struct ContentView: View {
         )
     }
 }
------------------------------------------------------------------------------
+------------------------------------------------------------Showing and Hiding Views with Transition modifiers------------
 
+import SwiftUI
+
+struct ContentView: View {
+    @State private var isRectShowing = false
+    
+    var body: some View {
+        Button("Tap me") {
+            withAnimation {
+                isRectShowing.toggle()
+            }
+        }
+        if isRectShowing {
+            Rectangle()
+                .fill(.red)
+                .frame(width: 300, height:200)
+                .transition(.asymmetric(insertion: .scale, removal: .opacity))
+        }
+    }
+}
+
+---------------------------------------------------
 
 
 
