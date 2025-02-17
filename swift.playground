@@ -1524,4 +1524,25 @@ struct ContentView: View {
     }
 }
 
--------------------------------------
+--------------------------------------------Explicit Animation bindings-----------------------------------------
+import SwiftUI
+
+struct ContentView: View {
+    @State private var animationAmount = 0.0
+    var body: some View {
+        Button("Tap Me") {
+            withAnimation(.spring(duration: 2, bounce: 0.5)) {
+                animationAmount += 360;
+            }
+        }
+        .padding(50)
+        .background(.red)
+        .foregroundStyle(.white)
+        .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+        .rotation3DEffect(
+            .degrees(animationAmount),axis: (x: 1.0, y: 0.0, z: 0.0)
+        )
+    }
+}
+
+--------------------------------------------
