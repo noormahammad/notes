@@ -1312,10 +1312,19 @@ struct ContentView : View {
     @State private var errorTitle = ""
     @State private var errorMessage = ""
     @State private var errorShowing = false
+    @State private var userScore = 0
     
     var body: some View {
         NavigationStack {
+            HStack {
+                Text("Your Score:")
+                Text("\(userScore)")
+                    .font(.largeTitle)
+                    .foregroundStyle(.green)
+                    .fontWeight(.bold)
+            }
             List {
+                
                 Section("Enter your word") {
                     TextField("Enter your word", text: $newWord)
                         .textInputAutocapitalization(.never)
@@ -1330,7 +1339,13 @@ struct ContentView : View {
                         }
                     }
                 }
-            }.navigationTitle(rootWord)
+            }
+            .navigationTitle(rootWord)
+            .toolbar {
+                Button("Next Word") {
+                    startGame()
+                }
+            }
         }
         .onSubmit(addNewWord)
         .onAppear(perform: startGame)
@@ -1339,11 +1354,13 @@ struct ContentView : View {
         } message: {
             Text(errorMessage)
         }
+        
     }
     
     func addNewWord() {
         let answer = newWord.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
-        guard answer.count > 0 else {return}
+        guard answer.count > 2 else {return}
+        guard answer != rootWord else {return}
         
         //some validations
         guard isOriginal(word: answer) else {
@@ -1363,6 +1380,7 @@ struct ContentView : View {
         
         withAnimation {
             usedWords.insert(answer, at: 0)
+            userScore += answer.count
         }
         newWord = ""
     }
@@ -1371,6 +1389,9 @@ struct ContentView : View {
         if let startWordsUrl = Bundle.main.url(forResource: "start", withExtension: "txt") {
             let allWords = try? String(contentsOf: startWordsUrl).components(separatedBy: "\n")
             rootWord = allWords?.randomElement() ?? "sandworm"
+            //clear existing values
+            usedWords = [String]()
+            newWord = ""
             return
         }
         fatalError("Could not load start.txt from bundle")
@@ -1381,8 +1402,8 @@ struct ContentView : View {
     }
     
     func isPossible(word: String) -> Bool {
-       var tempWord = rootWord
-       
+        var tempWord = rootWord
+        
         for letter in word {
             if let pos = tempWord.firstIndex(of: letter) {
                 tempWord.remove(at: pos)
