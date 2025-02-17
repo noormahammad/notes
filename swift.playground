@@ -1563,4 +1563,46 @@ struct ContentView: View {
     }
 }
 
----------------------------------------------------
+--------------------------------------------Gestures------------------------------------------------
+--dragging a card - implicit animation
+
+import SwiftUI
+
+struct ContentView: View {
+    @State private var dragAmount = CGSize.zero
+    var body: some View {
+        LinearGradient(colors: [.red, .yellow], startPoint: .topLeading, endPoint: .bottomTrailing)
+            .frame(width: 300, height: 200)
+            .clipShape(.rect(cornerRadius: 10))
+            .offset(dragAmount)
+            .gesture(
+                DragGesture()
+                    .onChanged { dragAmount = $0.translation }
+                    .onEnded { _ in dragAmount = CGSize.zero }
+            )
+            .animation(.bouncy, value: dragAmount)
+    }
+}
+-----dragging a card - explicit animation 
+import SwiftUI
+
+struct ContentView: View {
+    @State private var dragAmount = CGSize.zero
+    var body: some View {
+        LinearGradient(colors: [.red, .yellow], startPoint: .topLeading, endPoint: .bottomTrailing)
+            .frame(width: 300, height: 200)
+            .clipShape(.rect(cornerRadius: 10))
+            .offset(dragAmount)
+            .gesture(
+                DragGesture()
+                    .onChanged { dragAmount = $0.translation }
+                    .onEnded { _ in
+                        withAnimation(.bouncy) {
+                            dragAmount = CGSize.zero
+                        }
+                    }
+            )
+    }
+}
+
+------------------------------
