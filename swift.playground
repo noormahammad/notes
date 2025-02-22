@@ -1759,4 +1759,35 @@ struct ContentView: View {
         
     }
 }
---------------------------------------
+----------------------------------------Deleting Rows from a list ---------------------------------------------------------
+
+import SwiftUI
+
+struct ContentView: View {
+    @State var numbers = [Int]()
+    @State var currentNumber = 1
+    var body: some View {
+        NavigationStack {
+            VStack {
+                List {
+                    ForEach(numbers, id:\.self) {
+                        Text("Row \($0)")
+                    }
+                    .onDelete(perform: deleteRows)
+                }
+                
+                Button("Add a row") {
+                    numbers.append(currentNumber)
+                    currentNumber += 1
+                }
+            }
+            .toolbar {
+                EditButton()
+            }
+        }
+    }
+    
+    func deleteRows(at offsets: IndexSet) {
+        numbers.remove(atOffsets: offsets)
+    }
+}
