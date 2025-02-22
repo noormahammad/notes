@@ -1704,10 +1704,33 @@ struct ContentView: View {
     }
 }
 
-------------------------------------------------------------------------------------------------------
+--------------------------------------------------Observable on Class--------------------------------------------------
 
+@Observable
+class User {
+    var firstname = ""
+    var lastName = ""
+}
 
+struct ContentView: View {
+     @State private var user = User()
+    var body: some View {
+        VStack {
+            TextField("Enter your name", text: $user.firstname)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding(.bottom, 5)
+            
+            TextField("Enter your name", text: $user.lastName)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding(.bottom, 5)
+                
+            Text("Your name is: \(user.firstname), \(user.lastName)")
+                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
+                
+        }
+        .padding()
+    }
+}
 
-
-
+------
 
