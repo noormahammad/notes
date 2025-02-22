@@ -1791,3 +1791,32 @@ struct ContentView: View {
         numbers.remove(atOffsets: offsets)
     }
 }
+------------------------------App Storage : saving values to the device so that they can suvive between app restarts (user preferences, etc)---------------------------------------
+
+
+import SwiftUI
+
+struct ContentView: View {
+    @AppStorage("tap") private var tapCount = 0
+    var body: some View {
+        Button("Tap Count \(tapCount)") {
+            tapCount += 1
+        }
+    }
+}
+
+----------------------------User Defaults: Saving values that can survive between app restarts (user preferences, etc)-----------------------------------------------
+import SwiftUI
+
+struct ContentView: View {
+    @State private var tapCount = UserDefaults.standard.integer(forKey: "tapCount")
+    var body: some View {
+        Button("Tap Count \(tapCount)") {
+            tapCount += 1
+            UserDefaults.standard.setValue(tapCount, forKey: "tapCount")
+        }
+    }
+}
+---------------------------------------------------------------------
+
+
