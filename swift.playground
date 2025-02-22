@@ -1817,6 +1817,38 @@ struct ContentView: View {
         }
     }
 }
----------------------------------------------------------------------
-
-
+---------------------------------------------Saving Objects into UserDefaults using Codable, JsonEncoder and JsonDecoder----------------------------------------------
+import SwiftUI
+struct User: Codable {
+    var firstName: String
+    var lastName: String
+}
+struct ContentView: View {
+    @State private var user = User(firstName: "Chris", lastName: "Smith")
+    let names = ["Smith", "Will", "Rob", "Tom", "Kyle", "Rebecca", "Kate"]
+    
+    var body: some View {
+        VStack {
+            Text("Your name is: \(user.firstName)")
+                .padding(.bottom, 5)
+            
+            Button("Change User") {
+                user.firstName = names[Int.random(in: 0..<7)]
+                //Save User object to user defaults
+                let encoder = JSONEncoder()
+                if let userData = try? encoder.encode(user) {
+                    UserDefaults.standard.set(userData, forKey: "userData")
+                }
+            }
+        }
+        .onAppear() {
+            let decoder = JSONDecoder()
+            //optional binding with multiple conditions to unwrap multiple optional values using single if statement
+            if let userData =  UserDefaults.standard.data(forKey: "userData"),
+                let user1 = try? decoder.decode(User.self, from: userData) {
+                    user = user1
+                }
+        }
+    }
+}
+--------------------------------------------
