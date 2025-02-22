@@ -1751,7 +1751,7 @@ struct ContentView: View {
     @State private var showingSheet = false
     var body: some View {
         Button("Show Sheet") {
-            showingSheet = true
+            showingSheet.toggle()
         }
         .sheet(isPresented: $showingSheet) {
             AnotherView(name: "Chris")
