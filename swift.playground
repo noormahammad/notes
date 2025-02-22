@@ -1791,7 +1791,7 @@ struct ContentView: View {
         numbers.remove(atOffsets: offsets)
     }
 }
-------------------------------App Storage : saving values to the device so that they can suvive between app restarts (user preferences, etc)---------------------------------------
+------------------------------App Storage (property wrapper around UserDefaults) : saving values to the device so that they can suvive between app restarts (user preferences, etc)---------------------------------------
 
 
 import SwiftUI
