@@ -2106,4 +2106,35 @@ struct ContentView : View {
         }
     }
 }
-----------------------
+---------------------- List view with detail view--------------------
+
+import SwiftUI
+
+struct ContentView : View {
+    var body: some View {
+        NavigationStack {
+            List(0..<25) { item in
+                NavigationLink {
+                    Text("Detail View")
+                } label: {
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("Row \(item)")
+                                Text("Another Row")
+                                    .foregroundStyle(.gray)
+                            }
+                            Spacer()
+                            VStack(alignment: .leading) {
+                                Text("Row \(item)")
+                                Text("Another Row")
+                                    .foregroundStyle(.gray)
+                            }
+                        }
+                }
+            }
+            .navigationTitle("Swift UI")
+        }
+    }
+}
+
+----------------------------
