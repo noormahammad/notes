@@ -2041,5 +2041,36 @@ struct ContentView: View {
             }
     }
 }
+---------------------------------------------------------LazyVStack - loads only required views on demand as user scrolls through----------------------
+import SwiftUI
 
+var count = 0
+
+struct CustomText : View {
+    let text: String
+    var body: some View {
+        Text(text)
+            .font(.title)
+    }
+    
+    init(text: String) {
+        count +=  1
+        print("\(count) creating custom text")
+        self.text = text
+    }
+}
+
+struct ContentView: View {
+    var body: some View {
+        ScrollView {
+            LazyVStack {
+                ForEach(0..<150) {
+                    CustomText(text: " Item \($0)")
+                }
+            }
+            .frame(maxWidth: .infinity)
+        }
+    }
+}
+------------------------------------------------------
 
