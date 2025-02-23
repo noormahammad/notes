@@ -2072,5 +2072,38 @@ struct ContentView: View {
         }
     }
 }
-------------------------------------------------------
+------------------------------------------------------NavigationLink ---------------------------------------
+import SwiftUI
 
+struct ContentView : View {
+    var body: some View {
+        NavigationStack {
+            NavigationLink("Tap me") {
+                Text("Detail View")
+            }
+            .navigationTitle("Swift UI")
+        }
+    }
+}
+------------------------
+import SwiftUI
+
+struct ContentView : View {
+    var body: some View {
+        NavigationStack {
+            NavigationLink {
+                Text("Detail View")
+            } label: {
+                VStack {
+                    Text("Tap me")
+                    Image(systemName: "face.smiling")
+                        .foregroundStyle(.yellow)
+                        .fontWeight(.bold)
+                        .font(.largeTitle)
+                }
+            }
+            .navigationTitle("Swift UI")
+        }
+    }
+}
+----------------------
