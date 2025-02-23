@@ -2028,4 +2028,18 @@ struct AddView: View {
         }
     }
 }
-------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------Images------------------------------------
+import SwiftUI
+
+struct ContentView: View {
+    var body: some View {
+        Image(.aldrin)
+            .resizable()
+            .scaledToFit()
+            .containerRelativeFrame(.horizontal) { size, axis in
+                size * 0.75
+            }
+    }
+}
+
+
