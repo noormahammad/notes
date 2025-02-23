@@ -2137,4 +2137,41 @@ struct ContentView : View {
     }
 }
 
-----------------------------
+-------------------------------- Working with hierarchical data with Codable---------------------------------
+
+import SwiftUI
+
+struct Person : Codable {
+    let name: String
+    let address: Address
+}
+
+struct Address : Codable {
+    let street: String
+    let city: String
+}
+
+struct ContentView : View {
+    var inputJson = """
+                       {
+                            "name": "David",
+                            "address": {
+                                "street": "2423 Rosetta Ave",
+                                "city": "Carlsbad"
+                            }
+                       }
+                       """
+    var body: some View {
+        Button("Decode Json") {
+            let data = Data(inputJson.utf8)
+            let decoder = JSONDecoder()
+            
+            if let person = try? decoder.decode(Person.self, from: data) {
+                print(person.address.street)
+            } else {
+                print("someting went wrong")
+            }
+        }
+    }
+}
+----------------------------------------------------------------
