@@ -2174,4 +2174,62 @@ struct ContentView : View {
         }
     }
 }
-----------------------------------------------------------------
+-------------------------------------------------LazyVGrid, LazyHGrid, adaptive size-------------------------------------------
+
+import SwiftUI
+
+struct ContentView : View {
+    let columns = [
+        GridItem(.fixed(80)),
+        GridItem(.fixed(80)),
+        GridItem(.fixed(80))
+    ]
+    var body: some View {
+        ScrollView {
+            LazyVGrid(columns: columns) {
+                ForEach(0..<1000) {
+                    Text("Item \($0)")
+                        .frame(maxWidth: .infinity)
+                }
+            }
+        }
+    }
+}
+------------------------
+struct ContentView : View {
+    let columns = [
+        GridItem(.adaptive(minimum: 80, maximum: 120))
+    ]
+    var body: some View {
+        ScrollView {
+            LazyVGrid(columns: columns) {
+                ForEach(0..<1000) {
+                    Text("Item \($0)")
+                        .frame(maxWidth: .infinity)
+                }
+            }
+        }
+    }
+}
+---------------------------horizontal-------
+struct ContentView : View {
+    let layout = [
+        GridItem(.adaptive(minimum: 80, maximum: 120))
+    ]
+    var body: some View {
+        ScrollView(.horizontal) {
+            LazyHGrid(rows: layout) {
+                ForEach(0..<1000) {
+                    Text("Item \($0)")
+                        .frame(maxWidth: .infinity)
+                }
+            }
+        }
+    }
+}
+
+------------------------------------------------------
+
+
+
+
