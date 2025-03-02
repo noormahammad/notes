@@ -2291,18 +2291,39 @@ struct DetailView : View {
     }
 }
 
+struct Student: Hashable {
+    var id = UUID()
+    var name: String
+    var age: Int
+}
+
 struct ContentView: View {
     var body: some View {
         NavigationStack {
             List(0..<1000) { i in
-                NavigationLink("Tap here \(i)", value: i)
+                if(i % 5 == 0) {
+                    NavigationLink("Tap String \(i)", value: "divisible by 5")
+                } else if i % 3 == 0 {
+                    NavigationLink("Tap Student \(i)", value: Student(name: "Chris", age: 28))
+                }
+                else {
+                    NavigationLink("Tap int \(i)", value: i)
+                }
             }
             .navigationDestination(for: Int.self) { selection in
                 DetailView(number: selection) //detail view is not created unless user taps on an item on the list view. without navigationDestination, DetailView is created even during the loading of the list
             }
+            .navigationDestination(for: String.self) { selection in
+                Text("String is passed here")
+            }
+            .navigationDestination(for: Student.self) { student in
+                VStack {
+                    Text("Studnet name: \(student.name)")
+                    Text("Student age: \(student.age) years")
+                }
+            }
         }
     }
 }
-
 
 
