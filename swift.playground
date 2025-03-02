@@ -2275,7 +2275,34 @@ extension ShapeStyle where Self == Color {
         Color(red:0.2, green: 0.2, blue: 0.3)
     }
 }
-------------------------
+----------------------------------Handling Navigation smart way using navigationDestination------------------------------------
+import SwiftUI
+
+struct DetailView : View {
+    var number: Int
+
+    var body: some View {
+        Text("You tapped \(number)")
+    }
+    
+    init(number: Int) {
+        self.number = number
+        print("Creating detail view \(number)")
+    }
+}
+
+struct ContentView: View {
+    var body: some View {
+        NavigationStack {
+            List(0..<1000) { i in
+                NavigationLink("Tap here \(i)", value: i)
+            }
+            .navigationDestination(for: Int.self) { selection in
+                DetailView(number: selection) //detail view is not created unless user taps on an item on the list view. without navigationDestination, DetailView is created even during the loading of the list
+            }
+        }
+    }
+}
 
 
 
